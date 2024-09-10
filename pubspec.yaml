@@ -10,6 +10,9 @@ dependencies:
     flutter:
         sdk: flutter
     easy_localization: ^3.0.7
+    flutter_displaymode: ^0.6.0
+    device_preview: ^1.2.0
+    shared_preferences: ^2.3.2
 
 dev_dependencies:
     flutter_test:
