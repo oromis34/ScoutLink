@@ -3,8 +3,11 @@ import 'dart:developer';
 import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:scout_link/functions.dart';
+import 'package:scout_link/settings/settings.dart';
+import 'package:scout_link/utils/custom_delayed_curve.dart';
+import 'package:scout_link/utils/functions.dart';
 import 'package:flutter/foundation.dart';
+import 'package:scout_link/utils/on_app_resume.dart';
 
 // Requires hot restart when changed
 bool enableDevicePreview = true && kDebugMode;
@@ -14,6 +17,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
 
   setHighRefreshRate();
+  await initializeSettings();
 
   runApp(
     DevicePreview(
@@ -64,11 +68,46 @@ class MainApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale:
           enableDevicePreview ? DevicePreview.locale(context) : context.locale,
-      home: Scaffold(
-        body: Center(
-          child: Column(children: [Text('about'.tr())]),
-        ),
+      themeAnimationDuration: Duration(milliseconds: 400),
+      themeAnimationCurve: CustomDelayedCurve(),
+      key: ValueKey('ScoutLink'),
+      title: "ScoutLink",
+      home: Stack(
+        children: [
+          Row(
+            children: [
+              // NavigationSidebar(),
+              Expanded(
+                  child: Stack(
+                children: [
+                  // InitialPageRouteNavigator(),
+                  // GlobalSnackbar(key: snackbarKey),
+                ],
+              )),
+            ],
+          ),
+          // EnableSignInWithGoogleFlyIn(),
+          // GlobalLoadingIndeterminate(key: loadingIndeterminateKey),
+          // GlobalLoadingProgress(key: loadingProgressKey),
+        ],
       ),
+      builder: (context, child) {
+        if (kReleaseMode) {
+          ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+            return Container(color: Colors.transparent);
+          };
+        }
+
+        Widget mainWidget = OnAppResume(
+          updateGlobalAppLifecycleState: true,
+          onAppResume: () async {
+            await setHighRefreshRate();
+          },
+          child: child ?? SizedBox.shrink(),
+        );
+
+        return mainWidget;
+      },
     );
   }
 }
