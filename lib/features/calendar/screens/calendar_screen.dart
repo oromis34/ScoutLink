@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class CalendarScreen extends StatelessWidget {
+  const CalendarScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Text('calendar_label'.tr),
         centerTitle: true,
       ),
       body: Padding(
@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
           crossAxisSpacing: 16.0,
           mainAxisSpacing: 16.0,
           children: const [
-            Text('Personal Info'),
+            Text('CIAO CALENDARIO'),
           ],
         ),
       ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scout_link/features/auth/services/auth_service.dart';
-import 'package:scout_link/features/dashboard/widgets/dashboard_drawer_header.dart';
+import 'package:scout_link/features/dashboard/widgets/app_drawer_header.dart';
 
-class DashboardDrawer extends StatelessWidget {
-  const DashboardDrawer({super.key});
+class AppDrawer extends StatelessWidget {
+  const AppDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,33 +15,44 @@ class DashboardDrawer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            DashboardDrawerHeader(),
+            AppDrawerHeader(),
             ListTile(
               leading: Icon(Icons.home_outlined),
-              title: Text('Home'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: Icon(Icons.favorite_border),
-              title: Text('Favourites'),
-              onTap: () {},
+              title: Text('home_label'.tr),
+              onTap: () {
+                Get.toNamed("/");
+              },
             ),
             ListTile(
               leading: Icon(Icons.workspaces),
-              title: Text('Workflow'),
-              onTap: () {},
+              title: Text('specialities_label'.tr),
+              onTap: () {
+                Get.toNamed("/specialties");
+              },
             ),
             ListTile(
-              leading: Icon(Icons.update),
-              title: Text('Updates'),
-              onTap: () {},
+              leading: Icon(Icons.map),
+              title: Text('map_label'.tr),
+              onTap: () {
+                Get.toNamed("/map");
+              },
             ),
             const Divider(
               color: Colors.black45,
             ),
             ListTile(
               leading: Icon(Icons.notifications_outlined),
-              title: Text('Notifications'),
+              title: Text('notifications_label'.tr),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('settings_label'.tr),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('appinfo_label'.tr),
               onTap: () {},
             ),
             ListTile(

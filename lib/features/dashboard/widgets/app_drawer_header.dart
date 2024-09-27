@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scout_link/features/auth/services/auth_service.dart';
 
-class DashboardDrawerHeader extends StatelessWidget {
-  const DashboardDrawerHeader({super.key});
+class AppDrawerHeader extends StatelessWidget {
+  const AppDrawerHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class DashboardDrawerHeader extends StatelessWidget {
         },
         child: Container(
           padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top, bottom: 24),
+              top: MediaQuery.of(context).padding.top, bottom: 12),
           child: Column(
             children: [
               CircleAvatar(
