@@ -2,96 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:scout_link/features/calendar/screens/calendar_screen.dart';
-import 'package:scout_link/features/dashboard/widgets/app_drawer.dart';
+import 'package:scout_link/features/dashboard/screens/features_screen.dart';
+import 'package:scout_link/features/dashboard/widgets/app_bottom_navigation.dart';
 import 'package:scout_link/features/group/screens/group_screen.dart';
 import 'package:scout_link/features/home/screens/home_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   DashboardScreen({super.key});
 
-  final List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetList = <Widget>[
     HomeScreen(),
     GroupScreen(),
     CalendarScreen(),
+    FeaturesScreen()
   ];
 
-  final List<String> _widgetTitles = <String>[
-    "home_label".tr,
-    "group_label".tr,
-    "calendar_label".tr,
-  ];
+  final Logger logger = Logger();
+
+  final dashboardController = Get.put(DashboardController());
 
   @override
   Widget build(BuildContext context) {
-    Logger logger = Logger();
-
-    final dashboardController = Get.put(DashboardController());
-
     return Scaffold(
-        appBar: AppBar(
-          title: Obx(() => Text(
-              _widgetTitles.elementAt(dashboardController.currentIndex.value))),
-          actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.search,
-                semanticLabel: 'search',
-              ),
-              onPressed: () {
-                print('Search button');
-              },
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.tune,
-                semanticLabel: 'filter',
-              ),
-              onPressed: () {
-                print('Filter button');
-              },
-            ),
-          ],
-        ),
-        drawer: AppDrawer(),
-        body: Center(
-          child: Obx(() =>
-              _widgetOptions.elementAt(dashboardController.currentIndex.value)),
-        ),
-        bottomNavigationBar: Obx(
-          () => NavigationBar(
-            onDestinationSelected: (int index) {
-              logger.i('Tapped on $index');
-              dashboardController.setIndex(index);
-            },
-            indicatorColor: Colors.amber,
-            selectedIndex: dashboardController.currentIndex.value,
-            destinations: const <Widget>[
-              NavigationDestination(
-                selectedIcon: Icon(Icons.home),
-                icon: Icon(Icons.home_outlined),
-                label: 'Home',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.groups),
-                label: 'Gruppo',
-              ),
-              NavigationDestination(
-                icon: Badge(
-                  label: Text('2'),
-                  child: Icon(Icons.calendar_month),
-                ),
-                label: 'Calendario',
-              ),
-            ],
-          ),
-        ));
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: dashboardController.pageController,
+        children: _widgetList,
+      ),
+      bottomNavigationBar: AppBottomNavigation(),
+    );
   }
 }
 
 class DashboardController extends GetxController {
   var currentIndex = 0.obs;
+  PageController pageController = PageController(initialPage: 0);
 
   void setIndex(int index) {
     currentIndex.value = index;
+    pageController.animateToPage(index,
+        duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }
 }

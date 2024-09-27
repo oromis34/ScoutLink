@@ -16,6 +16,10 @@ final routes = [
     AuthMiddleware()
   ], children: [
     GetPage(
+      name: '/profile',
+      page: () => ProfileScreen(),
+    ),
+    GetPage(
       name: '/group',
       page: () => GroupScreen(),
     ),
@@ -32,10 +36,6 @@ final routes = [
       page: () => MapScreen(),
     ),
   ]),
-  GetPage(
-      name: '/profile',
-      page: () => ProfileScreen(),
-      middlewares: [AuthMiddleware()]),
   GetPage(name: '/access', page: () => AccessScreen(), children: [
     GetPage(
       name: '/login',

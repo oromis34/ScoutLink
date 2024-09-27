@@ -15,7 +15,6 @@ class AppDrawer extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            AppDrawerHeader(),
             ListTile(
               leading: Icon(Icons.home_outlined),
               title: Text('home_label'.tr),

@@ -4,6 +4,7 @@ Map<String, String> itMessages = {
   'home_label': 'Home',
   'group_label': 'Gruppo',
   'calendar_label': 'Calendario',
+  'features_label': 'Altro',
   'specialities_label': 'Specialità',
   'map_label': 'Mappa',
   'notifications_label': 'Notifiche',
