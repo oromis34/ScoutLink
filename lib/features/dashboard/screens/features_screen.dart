@@ -13,12 +13,12 @@ class FeaturesScreen extends StatelessWidget {
   final List<Feature> features = [
     Feature(
         title: 'Specialties',
-        icon: Icons.person,
+        icon: Icons.workspaces,
         description: "Specialties",
         path: "/specialties"),
     Feature(
         title: 'Map',
-        icon: Icons.person,
+        icon: Icons.map,
         description: "Specialties",
         path: "/map"),
     Feature(
@@ -57,16 +57,16 @@ class FeaturesScreen extends StatelessWidget {
           mainAxisSpacing: 10.0,
         ),
         itemCount: features.length,
-        itemBuilder: (ctx, i) => GestureDetector(
-          onTap: () {
-            if (features[i].action != null) {
-              features[i].action!();
-            } else if (features[i].path != null) {
-              Get.toNamed(features[i].path!);
-            }
-          },
-          child: Card(
-            elevation: 5,
+        itemBuilder: (ctx, i) => Card(
+          elevation: 5,
+          child: InkWell(
+            onTap: () {
+              if (features[i].action != null) {
+                features[i].action!();
+              } else if (features[i].path != null) {
+                Get.toNamed(features[i].path!);
+              }
+            },
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

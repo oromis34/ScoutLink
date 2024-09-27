@@ -30,7 +30,7 @@ class AppDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.map),
+              leading: Icon(Icons.location_on),
               title: Text('map_label'.tr),
               onTap: () {
                 Get.toNamed("/map");
