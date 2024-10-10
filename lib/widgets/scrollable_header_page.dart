@@ -6,7 +6,9 @@ class ScrollableHeaderPage extends StatelessWidget {
   final List<Widget>? actions;
   final bool canGoBack;
 
-  const ScrollableHeaderPage({
+  final ScrollController scrollController = ScrollController();
+
+  ScrollableHeaderPage({
     super.key,
     required this.title,
     required this.child,
@@ -17,6 +19,7 @@ class ScrollableHeaderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
+        controller: scrollController,
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
               SliverAppBar(
                 expandedHeight: 200,
@@ -28,8 +31,12 @@ class ScrollableHeaderPage extends StatelessWidget {
                   ),
                 ),
                 flexibleSpace: FlexibleSpaceBar(
-                  title: Text(title),
+                  title: Text(title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                      )),
                   titlePadding: EdgeInsets.only(left: 16, bottom: 16),
+                  expandedTitleScale: 2,
                 ),
                 forceElevated: innerBoxIsScrolled,
                 actions: actions,
@@ -44,7 +51,7 @@ class ScrollableHeaderPage extends StatelessWidget {
               )
             ],
         body: Container(
-            alignment: AlignmentDirectional.center,
+            alignment: AlignmentDirectional.topStart,
             color: Colors.blueAccent,
             child: child));
   }

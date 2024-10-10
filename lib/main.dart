@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 import 'package:scout_link/features/auth/services/auth_service.dart';
 import 'package:scout_link/routes/page_not_found.dart';
 import 'package:scout_link/routes/router.dart';
@@ -66,6 +63,12 @@ class MainApp extends StatelessWidget {
 
         return mainWidget;
       },
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        // fontFamily: 'Roboto',
+        fontFamily: 'Avenir',
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
     );
   }
 }

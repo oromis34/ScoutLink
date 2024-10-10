@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scout_link/features/auth/services/auth_service.dart';
-import 'package:scout_link/features/dashboard/widgets/app_drawer_header.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

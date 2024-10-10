@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scout_link/features/auth/services/auth_service.dart';
 import 'package:scout_link/features/dashboard/models/feature.dart';
-import 'package:scout_link/features/specialties/screens/specialties_screen.dart';
+import 'package:scout_link/widgets/scrollable_header_page.dart';
+
+import '../widgets/feature_card.dart';
 
 class FeaturesScreen extends StatelessWidget {
   FeaturesScreen({super.key});
@@ -12,76 +16,74 @@ class FeaturesScreen extends StatelessWidget {
   // TODO: Move features in a state?
   final List<Feature> features = [
     Feature(
-        title: 'Specialties',
-        icon: Icons.workspaces,
-        description: "Specialties",
-        path: "/specialties"),
-    Feature(
         title: 'Map',
         icon: Icons.map,
         description: "Specialties",
-        path: "/map"),
+        path: "/map",
+        color: Colors.blue,
+        flex: 1),
+    Feature(
+        title: 'Specialties',
+        icon: Icons.workspaces,
+        description: "Specialties",
+        path: "/specialties",
+        color: Colors.purple,
+        flex: .5),
     Feature(
         title: 'Profile',
         icon: Icons.person,
         description: "Specialties",
-        path: "/profile"),
+        path: "/profile",
+        color: Colors.orange,
+        flex: .5),
     Feature(
         title: 'Settings',
         icon: Icons.settings,
         description: "Specialties",
-        path: "/settings"),
+        path: "/settings",
+        color: Colors.grey,
+        flex: .33),
     Feature(
         title: 'Notifications',
         icon: Icons.notifications,
         description: "Specialties",
-        path: "/notifications"),
+        path: "/notifications",
+        color: Colors.yellow,
+        flex: .33),
     Feature(
-      title: 'Logout',
-      icon: Icons.logout,
-      action: () => {Get.find<AuthService>().logout()},
-    ),
+        title: 'Logout',
+        icon: Icons.logout,
+        action: () => {Get.find<AuthService>().logout()},
+        color: Colors.red,
+        flex: .33),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Features'),
-      ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(10.0),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10.0,
-          mainAxisSpacing: 10.0,
-        ),
-        itemCount: features.length,
-        itemBuilder: (ctx, i) => Card(
-          elevation: 5,
-          child: InkWell(
-            onTap: () {
-              if (features[i].action != null) {
-                features[i].action!();
-              } else if (features[i].path != null) {
-                Get.toNamed(features[i].path!);
-              }
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  features[i].icon,
-                  size: 50,
-                ),
-                SizedBox(height: 10),
-                Text(
-                  features[i].title,
-                  style: TextStyle(fontSize: 16),
-                ),
-              ],
-            ),
-          ),
+    return ScrollableHeaderPage(
+      title: "features_label".tr,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            double totalWidth = constraints.maxWidth;
+            return Wrap(
+              runAlignment: WrapAlignment.spaceBetween,
+              runSpacing: 16.0, // Spaziatura verticale tra le card
+              alignment: WrapAlignment.center,
+              children: features.map((feature) {
+                double cardWidth = (totalWidth - 0) *
+                    feature.flex; // Calcola la larghezza di ogni card
+                return SizedBox(
+                  height: 130,
+                  width: cardWidth, // Imposta la larghezza di ogni card
+                  child: FeatureCard(
+                    feature: feature,
+                  ),
+                );
+              }).toList(),
+            );
+          },
         ),
       ),
     );

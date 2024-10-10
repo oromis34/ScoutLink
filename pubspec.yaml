@@ -23,3 +23,17 @@ dev_dependencies:
 
 flutter:
     uses-material-design: true
+    fonts:
+        - family: Avenir
+          fonts:
+              - asset: assets/fonts/avenir/avenirLTStd-Book.otf
+                weight: 300
+              - asset: assets/fonts/avenir/avenirLTStd-Black.otf
+                weight: 900
+              - asset: assets/fonts/avenir/avenirLTStd-Light.otf
+                weight: 100
+              - asset: assets/fonts/avenir/avenirLTStd-Medium.otf
+                style: normal
+                weight: 500
+              - asset: assets/fonts/avenir/avenirLTStd-Heavy.otf
+                weight: 800

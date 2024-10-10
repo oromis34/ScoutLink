@@ -5,10 +5,11 @@ Map<String, String> enMessages = {
   'group_label': 'My Group',
   'calendar_label': 'Calendar',
   'features_label': 'Others',
-  'specialities_label': 'Specialties',
+  'specialties_label': 'Specialties',
   'map_label': 'Map',
   'notifications_label': 'Notifications',
   'settings_label': 'Settings',
   'appinfo_label': 'App info',
+  'profile_label': 'Profile',
   'logout_label': 'Logout',
 };

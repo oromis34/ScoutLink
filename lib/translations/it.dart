@@ -5,10 +5,11 @@ Map<String, String> itMessages = {
   'group_label': 'Gruppo',
   'calendar_label': 'Calendario',
   'features_label': 'Altro',
-  'specialities_label': 'Specialità',
+  'specialties_label': 'Specialità',
   'map_label': 'Mappa',
   'notifications_label': 'Notifiche',
   'settings_label': 'Impostazioni',
   'appinfo_label': 'Informazioni App',
+  'profile_label': 'Profilo',
   'logout_label': 'Esci',
 };

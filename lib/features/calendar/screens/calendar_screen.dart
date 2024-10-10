@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:scout_link/widgets/scrollable_header_page.dart';
 
 class CalendarScreen extends StatelessWidget {
   const CalendarScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('calendar_label'.tr),
-        centerTitle: true,
-      ),
-      body: Padding(
+    return ScrollableHeaderPage(
+      title: "calendar_label".tr,
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: GridView.count(
           crossAxisCount: 2,
