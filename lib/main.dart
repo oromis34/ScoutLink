@@ -26,9 +26,7 @@ void main() async {
     .setEndpoint('http://scoutlink.volcanixduo.com/v1') // Your Appwrite Endpoint
     .setProject('6708dc01002fdf59aac7');
 
-  final authService = Get.put(AuthService(client));
-
-  await authService.init();
+  await Get.putAsync(() => AuthService(client).init());
 
   runApp(
     DevicePreview(
