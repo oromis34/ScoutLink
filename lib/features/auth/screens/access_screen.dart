@@ -7,7 +7,7 @@ class AccessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('RistoVibes'),
+        title: Text('ScoutLink'),
       ),
       body: Center(
         child: Column(

@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                         height: 12,
                       ),
                       Text(
-                        authService.user.value!.username,
+                        authService.user?.name ?? 'John Doe',
                         style: TextStyle(fontSize: 28, color: Colors.white),
                       ),
                       Text(

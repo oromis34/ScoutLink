@@ -8,7 +8,7 @@ class AuthMiddleware extends GetMiddleware {
     // Check if the user is authenticated
     final authService = Get.find<AuthService>();
 
-    if (!authService.isLoggedIn) {
+    if (authService.user == null) {
       // If the user is not authenticated, redirect to the login page
       return RouteSettings(name: '/access');
     }

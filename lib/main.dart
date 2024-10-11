@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:appwrite/appwrite.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +22,13 @@ void main() async {
   setHighRefreshRate();
   await initializeSettings();
 
-  Get.put(AuthService());
+  Client client = Client()
+    .setEndpoint('http://scoutlink.volcanixduo.com/v1') // Your Appwrite Endpoint
+    .setProject('6708dc01002fdf59aac7');
+
+  final authService = Get.put(AuthService(client));
+
+  await authService.init();
 
   runApp(
     DevicePreview(
@@ -30,7 +39,7 @@ void main() async {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +75,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         // fontFamily: 'Roboto',
-        fontFamily: 'Avenir',
+        fontFamily: 'Roboto',
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
     );
